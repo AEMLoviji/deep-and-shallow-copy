@@ -18,7 +18,9 @@ namespace DeepAndShallowCopy
 
         public DummyClass DeepCopy()
         {
+            //clones value type properties
             DummyClass newDummyClass = (DummyClass)MemberwiseClone();
+            //below lines creates copy of reference type by creating new instances and setting its properties to source object properties
             newDummyClass.ListProperty = new List<int>(ListProperty);
             newDummyClass.ReferenceTypeProperty = (DummyClassInternal)newDummyClass.ReferenceTypeProperty.Clone();
 

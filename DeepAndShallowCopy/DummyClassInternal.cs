@@ -4,7 +4,7 @@ namespace DeepAndShallowCopy
 {
     public class DummyClassInternal : ICloneable
     {
-        public string Name { get; set; }
+        public string ValueTypeProperty { get; set; }
 
         public object Clone()
         {
@@ -13,7 +13,7 @@ namespace DeepAndShallowCopy
 
         public override string ToString()
         {
-            return $"{nameof(Name)}: {Name}";
+            return $"{nameof(ValueTypeProperty)}: {ValueTypeProperty}";
         }
     }
 }

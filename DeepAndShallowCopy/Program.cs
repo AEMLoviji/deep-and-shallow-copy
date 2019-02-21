@@ -10,33 +10,39 @@ namespace DeepAndShallowCopy
             var original = new DummyClass
             {
                 ValueTypeProperty = 1,
-                ReferenceTypeProperty = new DummyClassInternal() { Name = "obj_1" },
+                ReferenceTypeProperty = new DummyClassInternal() { ValueTypeProperty = "obj_1" },
                 ListProperty = new List<int>() { 1, 2, 3 }
             };
-            Console.WriteLine("Original (before modification):\n\t{0}", original);
+            WriteToConsole("Original (before modification):\n\t{0}", original);
 
             Console.WriteLine();
-            Console.WriteLine("/// Creating Copies(Deep/Shallow) ///");
+            WriteToConsole("/// Creating Copies(Deep/Shallow) ///");
             Console.WriteLine();
 
-            DummyClass shallowCopy = original.ShallowCopy();
-            DummyClass deepCopy = original.DeepCopy();
+            var shallowCopy = original.ShallowCopy();
+            var deepCopy = original.DeepCopy();
 
-            Console.WriteLine("Shallow Copy - before modification: \n\t{0}", shallowCopy);
-            Console.WriteLine("Deep Copy - before modification: \n\t{0}", deepCopy);
+            WriteToConsole("Shallow Copy - before modification: \n\t{0}", shallowCopy);
+            WriteToConsole("Deep Copy - before modification: \n\t{0}", deepCopy);
 
             Console.WriteLine();
-            Console.WriteLine("/// Modifying Original now ///");
+            WriteToConsole("/// Modifying Original now ///");
             Console.WriteLine();
-            original.ListProperty[0] = 999;
+            original.ListProperty[0] = 100;
             original.ValueTypeProperty = 2;
-            original.ReferenceTypeProperty.Name = "obj_2";
+            original.ReferenceTypeProperty.ValueTypeProperty = "obj_2";
 
-            Console.WriteLine("Original (after modifying original): \n\t{0}", original);
-            Console.WriteLine("Shallow Copy (after modifying original): \n\t{0}", shallowCopy);
-            Console.WriteLine("Deep Copy (after modifying original): \n\t{0}", deepCopy);
+            WriteToConsole("Original (after modifying original): \n\t{0}", original);
+            WriteToConsole("Shallow Copy (after modifying original): \n\t{0}", shallowCopy);
+            WriteToConsole("Deep Copy (after modifying original): \n\t{0}", deepCopy);
 
             Console.ReadLine();
+        }
+
+
+        private static void WriteToConsole(string format, params object[] arg)
+        {
+            Console.WriteLine(format, arg);
         }
     }
 }
